@@ -40,10 +40,10 @@ const AboutSection = () => {
     return (
         <section style={{ background: '#f0efeb', fontFamily: "'Inter', sans-serif" }}>
 
-            {/* ── 1. Dark top strip (bottom of hero bleed) ── */}
+            {/* ──  Dark top strip (bottom of hero bleed) ── */}
          
 
-            {/* ── 2. Client logo marquee ── */}
+            {/* ── Client logo marquee ── */}
             <div style={{ overflow: 'hidden', padding: '36px 0', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                     <span style={{ flexShrink: 0, paddingRight: '48px', paddingLeft: '40px', fontSize: '13px', color: '#555', fontWeight: 500, whiteSpace: 'nowrap' }}>
@@ -59,7 +59,7 @@ const AboutSection = () => {
                 </div>
             </div>
 
-            {/* ── 3. Main content ── */}
+            {/* ──  Main content ── */}
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -99,19 +99,22 @@ const AboutSection = () => {
                     }}>
                         Driving Demand &amp;&nbsp;Discovery
                         {/* Small inset image placeholder */}
-                        <span style={{
-                            display: 'inline-block',
-                            width: '72px',
-                            height: '72px',
-                            borderRadius: '10px',
-                            overflow: 'hidden',
-                            verticalAlign: 'middle',
-                            background: 'linear-gradient(135deg,#bbb 0%,#888 100%)',
-                            boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
-                            flexShrink: 0,
-                        }}>
-                            {/* Replace with: <img src="/your-image.jpg" style={{width:'100%',height:'100%',objectFit:'cover'}} /> */}
-                        </span>
+                       <span style={{
+  display: 'inline-block',
+  width: '72px',
+  height: '72px',
+  borderRadius: '10px',
+  overflow: 'hidden',
+  verticalAlign: 'middle',
+  boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+  flexShrink: 0,
+}}>
+  <img
+    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200&q=80"
+    alt="team"
+    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+  />
+</span>
                     </h2>
 
                     {/* CTA buttons */}
@@ -133,7 +136,7 @@ const AboutSection = () => {
       gap: '6px',
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       fontFamily: 'Inter, sans-serif',
-      transition: 'border-radius 0.3s ease, background 0.3s ease',
+      transition: 'border-radius 0.01s ease, background 0.01s ease',
     }}
     onMouseEnter={e => {
       e.currentTarget.style.borderRadius = '10px';
@@ -166,7 +169,7 @@ const AboutSection = () => {
       alignItems: 'center',
       gap: '6px',
       fontFamily: 'Inter, sans-serif',
-      transition: 'border-radius 0.3s ease, background 0.3s ease, padding 0.3s ease',
+      transition: 'border-radius 0.01s ease, background 0.01s ease, padding 0.3s ease',
     }}
     onMouseEnter={e => {
       e.currentTarget.style.borderRadius = '10px';
