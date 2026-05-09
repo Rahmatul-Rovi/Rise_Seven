@@ -209,19 +209,24 @@ export default function WhatsNew() {
           object-fit: cover;
         }
 
-        .wn-btn {
-          background: #fff;
-          border: none;
-          border-radius: 999px;
-          padding: 10px 22px;
-          font-size: 14px;
-          font-weight: 500;
-          cursor: pointer;
-          color: #111;
-          font-family: 'DM Sans', sans-serif;
-          white-space: nowrap;
-          flex-shrink: 0;
-        }
+       .wn-btn {
+  background: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #111;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: border-radius 0.01s ease;
+}
+
+.wn-btn:hover {
+  border-radius: 10px;
+}
 
         .wn-divider {
           border: none;
