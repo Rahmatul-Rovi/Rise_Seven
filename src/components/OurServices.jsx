@@ -175,26 +175,33 @@ export default function OurServices() {
               Services
             </h2>
 
-            <button
-              style={{
-                background: "#fff",
-                border: "none",
-                borderRadius: "999px",
-                padding: "10px 22px",
-                fontSize: "14px",
-                fontWeight: 500,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                color: "#111",
-                fontFamily: "'DM Sans', sans-serif",
-                whiteSpace: "nowrap",
-                flexShrink: 0,
-              }}
-            >
-              View All Services ↗
-            </button>
+          <button
+  style={{
+    background: "#fff",
+    border: "none",
+    borderRadius: "999px",
+    padding: "10px 22px",
+    fontSize: "14px",
+    fontWeight: 500,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    color: "#111",
+    fontFamily: "'DM Sans', sans-serif",
+    whiteSpace: "nowrap",
+    flexShrink: 0,
+    transition: "border-radius 0.1s ease, background 0.1s ease",
+  }}
+  onMouseEnter={e => {
+    e.currentTarget.style.borderRadius = '10px';
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.borderRadius = '999px';
+  }}
+>
+  View All Services ↗
+</button>
           </div>
 
           {/* Divider */}
