@@ -41,26 +41,7 @@ const AboutSection = () => {
         <section style={{ background: '#f0efeb', fontFamily: "'Inter', sans-serif" }}>
 
             {/* ── 1. Dark top strip (bottom of hero bleed) ── */}
-            <div style={{
-                background: 'rgba(40,15,20,0.82)',
-                backdropFilter: 'blur(6px)',
-                padding: '18px 40px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                fontSize: '13px',
-                color: 'rgba(255,255,255,0.85)',
-                lineHeight: 1.55,
-            }}>
-                <p style={{ margin: 0, maxWidth: '460px' }}>
-                    Organic media planners creating, distributing &amp; optimising<br />
-                    <strong style={{ color: '#fff' }}>search-first</strong> content for SEO, Social, PR, Ai and LLM search
-                </p>
-                <p style={{ margin: 0, textAlign: 'right' }}>
-                    4 Global Offices serving<br />
-                    <strong style={{ color: '#fff' }}>UK, USA (New York) &amp; EU</strong>
-                </p>
-            </div>
+         
 
             {/* ── 2. Client logo marquee ── */}
             <div style={{ overflow: 'hidden', padding: '36px 0', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>

@@ -202,8 +202,14 @@ const Banner = () => {
 
         {/* Bottom bar */}
         <div style={{ position: 'absolute', bottom: '24px', left: '40px', right: '40px', zIndex: 10, display: 'flex', justifyContent: 'space-between', fontSize: '12.5px', color: 'rgba(255,255,255,0.75)', fontWeight: 500 }}>
-          <span>Organic media planners creating, distributing & optimising</span>
-          <span>4 Global Offices serving</span>
+          <p style={{ margin: 0, maxWidth: '460px' }}>
+                    Organic media planners creating, distributing &amp; optimising<br />
+                    <strong style={{ color: '#fff' }}>search-first</strong> content for SEO, Social, PR, Ai and LLM search
+                </p>
+                <p style={{ margin: 0, textAlign: 'right' }}>
+                    4 Global Offices serving<br />
+                    <strong style={{ color: '#fff' }}>UK, USA (New York) &amp; EU</strong>
+                </p>
         </div>
       </div>
     </section>
