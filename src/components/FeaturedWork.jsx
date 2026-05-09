@@ -248,29 +248,36 @@ const FeaturedWork = () => {
                 justifyContent: 'center', 
                 padding: '60px 0' 
             }}>
-                <button style={{
-                    padding: '16px 32px',
-                    borderRadius: '999px',
-                    border: 'none',
-                    background: '#fff',
-                    color: '#000',
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    transition: 'transform 0.3s ease'
-                }}
-                onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                >
-                    Explore Our Work
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                </button>
+             <button
+  style={{
+    padding: '16px 32px',
+    borderRadius: '999px',
+    border: 'none',
+    background: '#fff',
+    color: '#000',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+    transition: 'border-radius 0.3s ease, transform 0.3s ease',
+  }}
+  onMouseEnter={e => {
+    e.currentTarget.style.borderRadius = '10px';
+    e.currentTarget.style.transform = 'scale(1.05)';
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.borderRadius = '999px';
+    e.currentTarget.style.transform = 'scale(1)';
+  }}
+>
+  Explore Our Work
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="7" y1="17" x2="17" y2="7" />
+    <polyline points="7 7 17 7 17 17" />
+  </svg>
+</button>
             </div>
         </section>
     );
