@@ -1,6 +1,7 @@
 import AboutSection from "../components/AboutSection";
 import Banner from "../components/Banner";
 import FeaturedWork from "../components/FeaturedWork";
+import Footer from "../components/Footer";
 import MarqueeSection from "../components/MarqueeSection";
 import OurServices from "../components/OurServices";
 import ScrollTextReveal from "../components/ScrollTextReveal";
@@ -22,10 +23,7 @@ const Home = () => {
             <WhatsNew/>
             <ScrollTextReveal/>
             
-            <div className="text-center">
-                <h2 className="text-3xl font-semibold">Our Services</h2>
-                <p>Ekhane apnar baki components gulo boshate thakun...</p>
-            </div>
+          <Footer/>
         </div>
     );
 };
