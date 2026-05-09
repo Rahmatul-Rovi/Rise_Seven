@@ -1,3 +1,4 @@
+import AboutSection from "../components/AboutSection";
 import Banner from "../components/Banner";
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
 
             {/* Other Components Will Go Here */}
            <Banner/>
+           <AboutSection/>
             {/* <Category /> */}
             {/* <PopularItems /> */}
             
