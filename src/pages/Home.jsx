@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import FeaturedWork from "../components/FeaturedWork";
 import MarqueeSection from "../components/MarqueeSection";
 import OurServices from "../components/OurServices";
+import ScrollTextReveal from "../components/ScrollTextReveal";
 import StackedCards from "../components/StackedCards";
 import WhatsNew from "../components/WhatsNew";
 
@@ -19,6 +20,7 @@ const Home = () => {
             <MarqueeSection/>
             <StackedCards/>
             <WhatsNew/>
+            <ScrollTextReveal/>
             
             <div className="text-center">
                 <h2 className="text-3xl font-semibold">Our Services</h2>
