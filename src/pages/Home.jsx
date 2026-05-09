@@ -3,6 +3,8 @@ import Banner from "../components/Banner";
 import FeaturedWork from "../components/FeaturedWork";
 import MarqueeSection from "../components/MarqueeSection";
 import OurServices from "../components/OurServices";
+import StackedCards from "../components/StackedCards";
+import WhatsNew from "../components/WhatsNew";
 
 const Home = () => {
     return (
@@ -15,6 +17,8 @@ const Home = () => {
           <FeaturedWork/>
           <OurServices/>
             <MarqueeSection/>
+            <StackedCards/>
+            <WhatsNew/>
             
             <div className="text-center">
                 <h2 className="text-3xl font-semibold">Our Services</h2>
