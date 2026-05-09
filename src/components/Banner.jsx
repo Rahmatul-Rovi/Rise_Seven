@@ -144,13 +144,40 @@ const Banner = () => {
           </ul>
 
           {/* CTA Button */}
-          <button style={{ background: '#fff', color: '#111', border: 'none', borderRadius: '999px', padding: '10px 24px', fontSize: '13.5px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'DM Sans, sans-serif', flexShrink: 0, transition: 'opacity 0.2s' }}>
-            Get In Touch
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="13" x2="13" y2="3" />
-              <polyline points="6,3 13,3 13,10" />
-            </svg>
-          </button>
+         <button
+  style={{
+    background: '#fff',
+    color: '#111',
+    border: 'none',
+    borderRadius: '999px',
+    padding: '10px 24px',
+    fontSize: '13.5px',
+    fontWeight: 600,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    fontFamily: 'DM Sans, sans-serif',
+    flexShrink: 0,
+    transition: 'background 0.2s ease, color 0.2s ease, transform 0.2s ease',
+  }}
+  onMouseEnter={e => {
+    e.currentTarget.style.background = '#111';
+    e.currentTarget.style.color = '#fff';
+    e.currentTarget.style.transform = 'scale(1.05)';
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.background = '#fff';
+    e.currentTarget.style.color = '#111';
+    e.currentTarget.style.transform = 'scale(1)';
+  }}
+>
+  Get In Touch
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+    <line x1="3" y1="13" x2="13" y2="3" />
+    <polyline points="6,3 13,3 13,10" />
+  </svg>
+</button>
         </nav>
 
         {/* HERO CONTENT */}
