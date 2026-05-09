@@ -1,5 +1,6 @@
 import AboutSection from "../components/AboutSection";
 import Banner from "../components/Banner";
+import FeaturedWork from "../components/FeaturedWork";
 
 const Home = () => {
     return (
@@ -9,7 +10,7 @@ const Home = () => {
             {/* Other Components Will Go Here */}
            <Banner/>
            <AboutSection/>
-            {/* <Category /> */}
+          <FeaturedWork/>
             {/* <PopularItems /> */}
             
             <div className="text-center">
