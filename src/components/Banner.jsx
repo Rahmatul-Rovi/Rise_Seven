@@ -1,115 +1,213 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+const dropdownData = {
+  'Services +': {
+    links: ['Digital PR', 'Search & Growth Strategy', 'Data & Insights', 'Organic Social & Content', 'Content Experience', 'Onsite SEO'],
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80',
+  },
+  'Industries +': {
+    links: ['B2B Marketing', 'eCommerce', 'Finance', 'Health & Wellness', 'Technology', 'Retail'],
+    img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80',
+  },
+  'International +': {
+    links: ['Sheffield', 'Manchester', 'London', 'New York'],
+    img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80',
+  },
+  'About +': {
+    links: ['About Us', 'Meet The Risers', 'Culture', 'Testimonials'],
+    img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80',
+  },
+  'Blog & Resources +': {
+    links: ['Blog', 'Case Studies', 'Whitepapers', 'Webinars'],
+    img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80',
+  },
+};
+
+const navItems = ['Services +', 'Industries +', 'International +', 'About +', 'Work', 'Careers', 'Blog & Resources +', 'Webinar'];
+
+const platforms = ['Google', 'ChatGPT', 'Gemini', 'TikTok', 'YouTube', 'Pinterest', 'GIPHY', 'reddit', 'amazon'];
 
 const Banner = () => {
-    return (
-        <section className="min-h-screen flex flex-col" style={{ fontFamily: "'Inter', sans-serif", background: '#000' }}>
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
-            {/* 1. Top Mint Bar */}
-            <div style={{ background: '#b2f5dc', textAlign: 'center', padding: '10px', fontSize: '13px', fontWeight: 600, color: '#111', letterSpacing: '0.02em' }}>
-                🏆 The Category Leaderboard - Live Now
-            </div>
+  return (
+    <section style={{ fontFamily: "'DM Sans', Inter, sans-serif", background: '#ECEAE4', minHeight: '100vh' }}>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
-            {/* 2. Main Hero */}
-            <div style={{ position: 'relative', flex: 1, minHeight: 'calc(100vh - 42px)', overflow: 'hidden', display: 'flex', flexDirection: 'column', borderRadius: '20px 20px 0 0', marginTop: '8px' }}>
+      {/* 1. Top Mint Bar */}
+      <div style={{ background: '#b2f5dc', textAlign: 'center', padding: '10px', fontSize: '13px', fontWeight: 600, color: '#111', letterSpacing: '0.02em' }}>
+        🏆 The Category Leaderboard - Live Now
+      </div>
 
-                {/* Background gradient (Red Bull vibe) */}
-                <div style={{
-                    position: 'absolute', inset: 0, zIndex: 0,
-                    background: `
-                        radial-gradient(ellipse 60% 80% at 20% 60%, rgba(180,30,30,0.55) 0%, transparent 60%),
-                        radial-gradient(ellipse 50% 60% at 80% 40%, rgba(30,50,130,0.45) 0%, transparent 60%),
-                        radial-gradient(ellipse 70% 50% at 50% 80%, rgba(10,10,40,0.8) 0%, transparent 70%),
-                        linear-gradient(160deg, #1a2a5e 0%, #0d0d1a 40%, #2a0a0a 100%)
-                    `
-                }} />
+      {/* 2. Main Hero */}
+      <div style={{ position: 'relative', minHeight: 'calc(100vh - 42px)', overflow: 'hidden', display: 'flex', flexDirection: 'column', borderRadius: '20px 20px 0 0', marginTop: '8px' }}>
 
-                {/* Dark overlay */}
-                <div style={{ position: 'absolute', inset: 0, background: 'rgba(5,5,18,0.55)', backdropFilter: 'blur(2px)', zIndex: 1 }} />
+        {/* Background image */}
+        <img
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80"
+          alt="hero bg"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+        />
 
-                {/* ---- NAV ---- */}
-                <nav style={{ position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '24px 40px' }}>
+        {/* Light overlay */}
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.22)', backdropFilter: 'blur(1px)', zIndex: 1 }} />
 
-                    {/* Logo */}
-                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', fontWeight: 800, color: '#fff', letterSpacing: '-0.5px' }}>
-                        Rise at Seven<sup style={{ fontSize: '10px', opacity: 0.7, fontWeight: 600 }}>®</sup>
-                    </div>
+        {/* NAV */}
+        <nav
+          style={{ position: 'relative', zIndex: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 40px', background: 'rgba(255,255,255,0.0)' }}
+          onMouseLeave={() => setActiveDropdown(null)}
+        >
+          {/* Logo */}
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '20px', fontWeight: 900, color: '#fff', letterSpacing: '-0.5px', flexShrink: 0 }}>
+            Rise at Seven<sup style={{ fontSize: '10px', opacity: 0.7, fontWeight: 600 }}>®</sup>
+          </div>
 
-                    {/* Nav Links */}
-                    <ul style={{ display: 'flex', alignItems: 'center', gap: '24px', listStyle: 'none', margin: 0, padding: 0 }}>
-                        {['Services +', 'Industries +', 'International +', 'About +', 'Work', 'Careers', 'Blog & Resources +', 'Webinar'].map((item) => (
-                            <li key={item}>
-                                <a href="#" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 500 }}>
-                                    {item}
-                                    {item === 'Work' && (
-                                        <span style={{ background: '#22c55e', color: '#fff', fontSize: '10px', fontWeight: 700, borderRadius: '999px', padding: '1px 6px', marginLeft: '4px' }}>25</span>
-                                    )}
-                                </a>
-                            </li>
+          {/* Nav Links */}
+          <ul style={{ display: 'flex', alignItems: 'center', gap: '6px', listStyle: 'none', margin: 0, padding: 0, flexWrap: 'wrap', justifyContent: 'center' }}>
+            {navItems.map((item) => {
+              const hasDropdown = !!dropdownData[item];
+              const isActive = activeDropdown === item;
+              return (
+                <li key={item} style={{ position: 'relative' }}>
+                  <a
+                    href="#"
+                    onMouseEnter={() => setActiveDropdown(hasDropdown ? item : null)}
+                    style={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                      fontSize: '13.5px',
+                      fontWeight: 500,
+                      padding: '7px 14px',
+                      borderRadius: '999px',
+                      background: isActive ? '#fff' : 'transparent',
+                      color: isActive ? '#111' : '#fff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      transition: 'background 0.2s, color 0.2s',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {item}
+                    {item === 'Work' && (
+                      <span style={{ background: '#22c55e', color: '#fff', fontSize: '10px', fontWeight: 700, borderRadius: '999px', padding: '1px 6px', marginLeft: '2px' }}>25</span>
+                    )}
+                  </a>
+
+                  {/* Dropdown panel */}
+                  {hasDropdown && isActive && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: 'calc(100% + 12px)',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        background: '#fff',
+                        borderRadius: '16px',
+                        padding: '24px',
+                        display: 'flex',
+                        gap: '24px',
+                        alignItems: 'stretch',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.18)',
+                        minWidth: '360px',
+                        zIndex: 100,
+                      }}
+                    >
+                      {/* Links */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flex: 1, justifyContent: 'center' }}>
+                        {dropdownData[item].links.map((link) => (
+                          <a
+                            key={link}
+                            href="#"
+                            style={{ fontSize: '16px', fontWeight: 700, color: '#111', textDecoration: 'none', transition: 'color 0.15s' }}
+                            onMouseEnter={e => e.target.style.color = '#5eead4'}
+                            onMouseLeave={e => e.target.style.color = '#111'}
+                          >
+                            {link}
+                          </a>
                         ))}
-                    </ul>
+                      </div>
 
-                    {/* CTA Button */}
-                    <button style={{ background: 'transparent', color: '#fff', border: '1.5px solid rgba(255,255,255,0.8)', borderRadius: '999px', padding: '10px 24px', fontSize: '13.5px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'Inter, sans-serif' }}>
-                        Get In Touch
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                            <line x1="3" y1="13" x2="13" y2="3" />
-                            <polyline points="6,3 13,3 13,10" />
-                        </svg>
-                    </button>
-                </nav>
-
-                {/* ---- HERO CONTENT ---- */}
-                <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px 40px 80px' }}>
-
-                    {/* Awards Label */}
-                    <p style={{ fontSize: '11px', fontWeight: 700, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>
-                        #1 Most Recommended Content Marketing Agency
-                    </p>
-
-                    {/* Awards Row */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '36px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                        <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '22px' }}>❧</span>
-                        {['GLOBAL\nSEARCH AWARDS', 'The Drum', 'UK Social\nMedia Awards', 'CONTENT\nAWARDS'].map((label) => (
-                            <div key={label} style={{ width: '88px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.35)', borderRadius: '6px', padding: '4px 8px', background: 'rgba(255,255,255,0.05)' }}>
-                                <span style={{ color: '#fff', fontSize: '9px', fontWeight: 700, textAlign: 'center', whiteSpace: 'pre-line', lineHeight: 1.3 }}>{label}</span>
-                            </div>
-                        ))}
-                        <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '22px' }}>❧</span>
+                      {/* Image */}
+                      <div style={{ width: '180px', height: '180px', borderRadius: '12px', overflow: 'hidden', flexShrink: 0 }}>
+                        <img
+                          src={dropdownData[item].img}
+                          alt={item}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      </div>
                     </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
 
-                    {/* Main Headline */}
-                    <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(64px, 10vw, 120px)', fontWeight: 900, color: '#fff', lineHeight: 0.92, letterSpacing: '-3px', margin: 0 }}>
-                        We Create<br />Category
-                    </h1>
+          {/* CTA Button */}
+          <button style={{ background: '#fff', color: '#111', border: 'none', borderRadius: '999px', padding: '10px 24px', fontSize: '13.5px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'DM Sans, sans-serif', flexShrink: 0, transition: 'opacity 0.2s' }}>
+            Get In Touch
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="13" x2="13" y2="3" />
+              <polyline points="6,3 13,3 13,10" />
+            </svg>
+          </button>
+        </nav>
 
-                    {/* "Leaders" + Product Image Row */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginTop: '-6px' }}>
-                        {/* Red Bull Can — replace src with your actual image */}
-                        <div style={{ width: 'clamp(70px, 8vw, 100px)', height: 'clamp(70px, 8vw, 100px)', borderRadius: '16px', overflow: 'hidden', background: 'linear-gradient(135deg, #1a3a8c 0%, #c0392b 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.5)', flexShrink: 0 }}>
-                            {/* 👇 এইখানে actual image দিলে: */}
-                            {/* <img src="/redbull-can.png" alt="Red Bull" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> */}
-                            <span style={{ color: '#fff', fontSize: '11px', fontWeight: 700, textAlign: 'center' }}>Red Bull</span>
-                        </div>
+        {/* HERO CONTENT */}
+        <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px 40px 100px' }}>
 
-                        <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(64px, 10vw, 120px)', fontWeight: 900, color: '#fff', lineHeight: 0.92, letterSpacing: '-3px', margin: 0 }}>
-                            Leaders
-                        </h1>
-                    </div>
+          {/* Awards Label */}
+          <p style={{ fontSize: '11px', fontWeight: 700, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '14px' }}>
+            #1 Most Recommended Content Marketing Agency
+          </p>
 
-                    {/* Subtitle */}
-                    <p style={{ fontSize: 'clamp(20px, 3vw, 36px)', fontWeight: 500, color: 'rgba(255,255,255,0.9)', marginTop: '32px', letterSpacing: '-0.5px' }}>
-                        on every searchable platform
-                    </p>
-                </div>
+          {/* Awards Row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '20px' }}>❧</span>
+            {['GLOBAL\nSEARCH AWARDS', 'The Drum', 'UK Social\nMedia Awards', 'CONTENT\nAWARDS'].map((label) => (
+              <div key={label} style={{ width: '84px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.5)', borderRadius: '6px', padding: '4px 8px', background: 'rgba(255,255,255,0.12)' }}>
+                <span style={{ color: '#fff', fontSize: '8px', fontWeight: 700, textAlign: 'center', whiteSpace: 'pre-line', lineHeight: 1.3 }}>{label}</span>
+              </div>
+            ))}
+            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '20px' }}>❧</span>
+          </div>
 
-                {/* ---- FOOTER ---- */}
-                <div style={{ position: 'absolute', bottom: '24px', left: '40px', right: '40px', zIndex: 10, display: 'flex', justifyContent: 'space-between', fontSize: '12.5px', color: 'rgba(255,255,255,0.75)', fontWeight: 500 }}>
-                    <span>Organic media planners creating, distributing & optimising</span>
-                    <span>4 Global Offices serving</span>
-                </div>
+          {/* Main Headline */}
+          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(60px, 9vw, 110px)', fontWeight: 900, color: '#fff', lineHeight: 0.92, letterSpacing: '-3px', margin: 0 }}>
+            We Create Category
+          </h1>
+
+          {/* "Leaders" + inline image */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '4px' }}>
+            <div style={{ width: 'clamp(60px, 7vw, 90px)', height: 'clamp(60px, 7vw, 90px)', borderRadius: '14px', overflow: 'hidden', flexShrink: 0, boxShadow: '0 8px 32px rgba(0,0,0,0.35)' }}>
+              <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=200&q=80" alt="brand" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-        </section>
-    );
+            <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(60px, 9vw, 110px)', fontWeight: 900, color: '#fff', lineHeight: 0.92, letterSpacing: '-3px', margin: 0 }}>
+              Leaders
+            </h1>
+          </div>
+
+          {/* Subtitle */}
+          <p style={{ fontSize: 'clamp(18px, 2.5vw, 30px)', fontWeight: 500, color: 'rgba(255,255,255,0.92)', marginTop: '28px', letterSpacing: '-0.3px' }}>
+            on every searchable platform
+          </p>
+
+          {/* Platform logos row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginTop: '28px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {platforms.map((p) => (
+              <span key={p} style={{ fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.75)', letterSpacing: '-0.02em' }}>{p}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div style={{ position: 'absolute', bottom: '24px', left: '40px', right: '40px', zIndex: 10, display: 'flex', justifyContent: 'space-between', fontSize: '12.5px', color: 'rgba(255,255,255,0.75)', fontWeight: 500 }}>
+          <span>Organic media planners creating, distributing & optimising</span>
+          <span>4 Global Offices serving</span>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Banner;
