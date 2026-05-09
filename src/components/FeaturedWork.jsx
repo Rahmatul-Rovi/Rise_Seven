@@ -13,7 +13,7 @@ const projects = [
         name: 'Dojo - B2B',
         year: '[2021-2025]',
         bgColor: '#1a1a1a',
-        image: 'https://i.ibb.co.com/nsG8F39V/point-sale-machine-design-resource-53876-105925.jpg', // Image thakle ekhane link diben
+        image: 'https://i.ibb.co.com/nsG8F39V/point-sale-machine-design-resource-53876-105925.jpg', 
         placeholder: { bg: 'linear-gradient(135deg, #00b8a0 0%, #007a6e 100%)', label: 'Dojo — Payment Machines' },
         tag: 'Card Machines',
     },
@@ -53,6 +53,7 @@ const projects = [
 
 const FeaturedWork = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [hoveredIndex, setHoveredIndex] = useState(null); // Hover track করার জন্য
     const sectionRef = useRef(null);
     const itemRefs = useRef([]);
 
@@ -81,6 +82,7 @@ const FeaturedWork = () => {
                 background: '#111',
                 fontFamily: "'Inter', sans-serif",
                 position: 'relative',
+                paddingBottom: '100px' // বাটন এর জন্য নিচ থেকে একটু জায়গা
             }}
         >
             <div style={{ display: 'flex', position: 'relative' }}>
@@ -155,12 +157,15 @@ const FeaturedWork = () => {
                         <div
                             key={p.name}
                             ref={el => itemRefs.current[i] = el}
+                            onMouseEnter={() => setHoveredIndex(i)} // Mouse ঢুকলে
+                            onMouseLeave={() => setHoveredIndex(null)} // Mouse বের হলে
                             style={{
                                 height: '100vh',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
                                 gap: '16px',
+                                cursor: 'pointer'
                             }}
                         >
                             {/* Image card */}
@@ -172,7 +177,16 @@ const FeaturedWork = () => {
                                 background: p.placeholder.bg,
                                 boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
                             }}>
-                                {/* ACTUAL IMAGE RENDERING */}
+                                {/* HOVER OVERLAY: মাউস নিলে একটু কালো হবে */}
+                                <div style={{
+                                    position: 'absolute',
+                                    top: 0, left: 0, width: '100%', height: '100%',
+                                    background: hoveredIndex === i ? 'rgba(0,0,0,0.3)' : 'transparent',
+                                    transition: 'background 0.5s ease',
+                                    zIndex: 1
+                                }}></div>
+
+                                {/* IMAGE with ZOOM EFFECT */}
                                 {p.image ? (
                                     <img 
                                         src={p.image} 
@@ -181,17 +195,16 @@ const FeaturedWork = () => {
                                             width: '100%',
                                             height: '100%',
                                             objectFit: 'cover',
-                                            display: 'block'
+                                            display: 'block',
+                                            transition: 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)', // Smooth zoom
+                                            transform: hoveredIndex === i ? 'scale(1.1)' : 'scale(1)', // Hover করলে জুম
                                         }}
-                                        onError={(e) => { e.target.style.display = 'none' }} // Image load na hole hide korbe
+                                        onError={(e) => { e.target.style.display = 'none' }}
                                     />
                                 ) : (
                                     <div style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
+                                        width: '100%', height: '100%',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     }}>
                                         <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '18px', fontWeight: 600 }}>
                                             {p.placeholder.label}
@@ -226,6 +239,38 @@ const FeaturedWork = () => {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            {/* ── FOOTER BUTTON: Explore Our Work ── */}
+            <div style={{ 
+                width: '100%', 
+                display: 'flex', 
+                justifyContent: 'center', 
+                padding: '60px 0' 
+            }}>
+                <button style={{
+                    padding: '16px 32px',
+                    borderRadius: '999px',
+                    border: 'none',
+                    background: '#fff',
+                    color: '#000',
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    transition: 'transform 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                >
+                    Explore Our Work
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </button>
             </div>
         </section>
     );
