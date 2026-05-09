@@ -5,7 +5,7 @@ const projects = [
         name: 'SIXT',
         year: '[2023-2025]',
         bgColor: '#1a1a1a',
-        // image: '/images/sixt.jpg',  ← actual image দিলে এটা uncomment করো
+        image: 'https://i.ibb.co.com/B5PC45KZ/istockphoto-1419724017-612x612.jpg',  
         placeholder: { bg: 'linear-gradient(135deg, #2a2a2a 0%, #444 100%)', label: 'SIXT — Car Rental' },
         tag: 'Car rental',
     },
@@ -13,6 +13,7 @@ const projects = [
         name: 'Dojo - B2B',
         year: '[2021-2025]',
         bgColor: '#1a1a1a',
+        image: 'https://i.ibb.co.com/nsG8F39V/point-sale-machine-design-resource-53876-105925.jpg', // Image thakle ekhane link diben
         placeholder: { bg: 'linear-gradient(135deg, #00b8a0 0%, #007a6e 100%)', label: 'Dojo — Payment Machines' },
         tag: 'Card Machines',
     },
@@ -20,6 +21,7 @@ const projects = [
         name: 'Magnet',
         year: '[2023-2024]',
         bgColor: '#1a1a1a',
+        image: 'https://i.ibb.co.com/0yWLnzc9/front.jpg',
         placeholder: { bg: 'linear-gradient(135deg, #1a2a1a 0%, #2d4a2d 100%)', label: 'Magnet — Kitchen Showroom' },
         tag: 'Kitchen Showroom',
     },
@@ -27,6 +29,7 @@ const projects = [
         name: 'Trade - B2B',
         year: '[2023-2024]',
         bgColor: '#1a1a1a',
+        image: 'https://i.ibb.co.com/mFvg4k1f/hands-typing-on-laptop-b2b-600nw-2675119475.jpg',
         placeholder: { bg: 'linear-gradient(135deg, #1a1a3a 0%, #2a2a5a 100%)', label: 'Trade B2B' },
         tag: 'B2B Trade',
     },
@@ -34,6 +37,7 @@ const projects = [
         name: 'Leading E Sim',
         year: '[2023-2025]',
         bgColor: '#1a1a1a',
+        image: 'https://i.ibb.co.com/RGxHVy7w/1631339459630-637669362601620485.png',
         placeholder: { bg: 'linear-gradient(135deg, #0a1a4a 0%, #1a3a8a 100%)', label: 'Leading eSIM Brand Globally' },
         tag: 'Esims',
     },
@@ -41,6 +45,7 @@ const projects = [
         name: 'JD Sports',
         year: '[2025]',
         bgColor: '#1a1a1a',
+        image: 'https://i.ibb.co.com/XfDxy5cN/images.jpg',
         placeholder: { bg: 'linear-gradient(135deg, #1a1a1a 0%, #333 100%)', label: 'JD Sports' },
         tag: 'Sports Retail',
     },
@@ -54,9 +59,8 @@ const FeaturedWork = () => {
     useEffect(() => {
         const handleScroll = () => {
             if (!sectionRef.current) return;
-            const sectionTop = sectionRef.current.getBoundingClientRect().top;
             const windowH = window.innerHeight;
-            // which item is closest to center
+            
             itemRefs.current.forEach((el, i) => {
                 if (!el) return;
                 const rect = el.getBoundingClientRect();
@@ -79,10 +83,7 @@ const FeaturedWork = () => {
                 position: 'relative',
             }}
         >
-            <div style={{
-                display: 'flex',
-                position: 'relative',
-            }}>
+            <div style={{ display: 'flex', position: 'relative' }}>
                 {/* ── LEFT: Sticky panel ── */}
                 <div style={{
                     width: '50%',
@@ -95,14 +96,11 @@ const FeaturedWork = () => {
                     padding: '48px 40px',
                     zIndex: 2,
                 }}>
-                    {/* "Featured Work" label */}
                     <p style={{ color: '#fff', fontSize: '14px', fontWeight: 600, margin: 0 }}>Featured Work</p>
 
-                    {/* Project name list */}
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '4px', marginTop: '40px' }}>
                         {projects.map((p, i) => {
                             const diff = i - activeIndex;
-                            // active = white full, above = grey fading, below = grey fading
                             let opacity = 1;
                             let color = '#fff';
                             let fontSize = 'clamp(32px, 4.5vw, 60px)';
@@ -173,28 +171,40 @@ const FeaturedWork = () => {
                                 position: 'relative',
                                 background: p.placeholder.bg,
                                 boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-                                transition: 'transform 0.3s ease',
                             }}>
-                                {/* Replace this div with <img src={p.image} style={{width:'100%',height:'100%',objectFit:'cover'}}/> */}
-                                <div style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    background: p.placeholder.bg,
-                                }}>
-                                    <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '18px', fontWeight: 600 }}>
-                                        {p.placeholder.label}
-                                    </span>
-                                </div>
+                                {/* ACTUAL IMAGE RENDERING */}
+                                {p.image ? (
+                                    <img 
+                                        src={p.image} 
+                                        alt={p.name}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover',
+                                            display: 'block'
+                                        }}
+                                        onError={(e) => { e.target.style.display = 'none' }} // Image load na hole hide korbe
+                                    />
+                                ) : (
+                                    <div style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                    }}>
+                                        <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '18px', fontWeight: 600 }}>
+                                            {p.placeholder.label}
+                                        </span>
+                                    </div>
+                                )}
 
-                                {/* Search tag badge — bottom right */}
+                                {/* Search tag badge */}
                                 <div style={{
                                     position: 'absolute',
                                     bottom: '16px',
                                     right: '16px',
-                                    background: 'rgba(255,255,255,0.15)',
+                                    background: 'rgba(0,0,0,0.4)',
                                     backdropFilter: 'blur(8px)',
                                     borderRadius: '999px',
                                     padding: '6px 14px',
@@ -204,15 +214,13 @@ const FeaturedWork = () => {
                                     color: '#fff',
                                     fontSize: '13px',
                                     fontWeight: 600,
+                                    zIndex: 5
                                 }}>
                                     <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2">
                                         <circle cx="6.5" cy="6.5" r="5" />
                                         <line x1="10.5" y1="10.5" x2="15" y2="15" />
                                     </svg>
                                     {p.tag}
-                                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2">
-                                        <polyline points="2,12 6,6 10,9 14,3" />
-                                    </svg>
                                 </div>
                             </div>
                         </div>
