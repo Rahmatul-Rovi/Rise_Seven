@@ -1,42 +1,75 @@
 import { useEffect, useRef, useState } from "react";
 
+const FULL_TEXT = "Ready to Rise at Seven?";
+
+// Split into words, each word into letters
+const words = FULL_TEXT.split(" ").map((word) =>
+  word.split("").map((char) => char)
+);
+
+// Flatten all letters with index for staggered timing
+const allLetters = [];
+words.forEach((word, wi) => {
+  word.forEach((char, li) => {
+    allLetters.push({ char, wi, li });
+  });
+});
+const totalLetters = allLetters.length;
+
 export default function ScrollTextReveal() {
   const sectionRef = useRef(null);
-  const [offset, setOffset] = useState(100);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const section = sectionRef.current;
       if (!section) return;
-
       const rect = section.getBoundingClientRect();
       const windowH = window.innerHeight;
       const sectionH = section.offsetHeight;
-
-      // progress: 0 when section enters bottom of viewport, 1 when it leaves top
-      const progress = Math.max(
-        0,
-        Math.min(1, (windowH - rect.top) / (windowH + sectionH))
-      );
-
-      // Start at +80vw (off-screen right), end at -20vw (slightly off-screen left)
-      const translateX = 80 - progress * 120;
-      setOffset(translateX);
+      const p = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH + sectionH)));
+      setProgress(p);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Overall horizontal slide: right → left
+  const translateX = 55 - progress * 110;
+
+  // Each letter settles based on its position index — earlier letters settle first
+  // letterProgress: 0 = not started, 1 = fully settled
+  const getLetterStyle = (globalIndex) => {
+    // stagger: first letter starts settling at progress=0.1, last at progress=0.5
+    const start = 0.08 + (globalIndex / totalLetters) * 0.35;
+    const end = start + 0.2;
+    const lp = Math.max(0, Math.min(1, (progress - start) / (end - start)));
+    const factor = 1 - lp; // 1=unsettled, 0=settled
+
+    // Rotation: alternate slightly so it looks organic
+    const baseRotate = globalIndex % 2 === 0 ? -38 : -28;
+    const baseY = globalIndex % 2 === 0 ? -70 : -50;
+
+    return {
+      display: "inline-block",
+      transform: `translateY(${baseY * factor}px) rotate(${baseRotate * factor}deg)`,
+      transformOrigin: "bottom center",
+      transition: "transform 0.12s ease-out",
+      willChange: "transform",
+    };
+  };
+
+  let globalIndex = 0;
+
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');
 
         .str-section {
           background: #ECEAE4;
-          height: 300vh;
+          height: 400vh;
           position: relative;
         }
 
@@ -50,15 +83,23 @@ export default function ScrollTextReveal() {
         }
 
         .str-text {
+          display: flex;
+          align-items: flex-end;
+          gap: 0.22em;
           white-space: nowrap;
           font-family: 'DM Sans', sans-serif;
-          font-size: clamp(52px, 10vw, 130px);
+          font-size: clamp(48px, 9vw, 120px);
           font-weight: 700;
           color: #111;
           letter-spacing: -0.03em;
           line-height: 1;
-          will-change: transform;
           padding: 0 48px;
+          will-change: transform;
+        }
+
+        .str-word {
+          display: inline-flex;
+          align-items: flex-end;
         }
       `}</style>
 
@@ -67,11 +108,22 @@ export default function ScrollTextReveal() {
           <div
             className="str-text"
             style={{
-              transform: `translateX(${offset}vw)`,
-              transition: "transform 0.05s linear",
+              transform: `translateX(${translateX}vw)`,
+              transition: "transform 0.06s linear",
             }}
           >
-            Ready to Rise at Seven?
+            {words.map((word, wi) => (
+              <span key={wi} className="str-word">
+                {word.map((char, li) => {
+                  const idx = globalIndex++;
+                  return (
+                    <span key={li} style={getLetterStyle(idx)}>
+                      {char}
+                    </span>
+                  );
+                })}
+              </span>
+            ))}
           </div>
         </div>
       </div>
