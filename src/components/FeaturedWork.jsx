@@ -82,7 +82,7 @@ const FeaturedWork = () => {
                 background: '#111',
                 fontFamily: "'Inter', sans-serif",
                 position: 'relative',
-                paddingBottom: '100px' // বাটন এর জন্য নিচ থেকে একটু জায়গা
+                paddingBottom: '100px'
             }}
         >
             <div style={{ display: 'flex', position: 'relative' }}>
@@ -157,8 +157,8 @@ const FeaturedWork = () => {
                         <div
                             key={p.name}
                             ref={el => itemRefs.current[i] = el}
-                            onMouseEnter={() => setHoveredIndex(i)} // Mouse ঢুকলে
-                            onMouseLeave={() => setHoveredIndex(null)} // Mouse বের হলে
+                            onMouseEnter={() => setHoveredIndex(i)} 
+                            onMouseLeave={() => setHoveredIndex(null)} 
                             style={{
                                 height: '100vh',
                                 display: 'flex',
@@ -177,7 +177,7 @@ const FeaturedWork = () => {
                                 background: p.placeholder.bg,
                                 boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
                             }}>
-                                {/* HOVER OVERLAY: মাউস নিলে একটু কালো হবে */}
+                              
                                 <div style={{
                                     position: 'absolute',
                                     top: 0, left: 0, width: '100%', height: '100%',
@@ -196,8 +196,8 @@ const FeaturedWork = () => {
                                             height: '100%',
                                             objectFit: 'cover',
                                             display: 'block',
-                                            transition: 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)', // Smooth zoom
-                                            transform: hoveredIndex === i ? 'scale(1.1)' : 'scale(1)', // Hover করলে জুম
+                                            transition: 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)', 
+                                            transform: hoveredIndex === i ? 'scale(1.1)' : 'scale(1)', 
                                         }}
                                         onError={(e) => { e.target.style.display = 'none' }}
                                     />
