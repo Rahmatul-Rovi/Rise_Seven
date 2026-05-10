@@ -144,7 +144,7 @@ const Banner = () => {
           </ul>
 
           {/* CTA Button */}
-         <button
+       <button
   style={{
     background: '#fff',
     color: '#111',
@@ -159,17 +159,13 @@ const Banner = () => {
     gap: '6px',
     fontFamily: 'DM Sans, sans-serif',
     flexShrink: 0,
-    transition: 'background 0.2s ease, color 0.2s ease, transform 0.2s ease',
+    transition: 'border-radius 0.01s ease',
   }}
   onMouseEnter={e => {
-    e.currentTarget.style.background = '#111';
-    e.currentTarget.style.color = '#fff';
-    e.currentTarget.style.transform = 'scale(1.05)';
+    e.currentTarget.style.borderRadius = '10px';
   }}
   onMouseLeave={e => {
-    e.currentTarget.style.background = '#fff';
-    e.currentTarget.style.color = '#111';
-    e.currentTarget.style.transform = 'scale(1)';
+    e.currentTarget.style.borderRadius = '999px';
   }}
 >
   Get In Touch
