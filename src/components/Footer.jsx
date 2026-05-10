@@ -228,7 +228,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Nav col 1 */}
             <nav className="nav-col">
               {navCol1.map((item) => (
                 <span
@@ -240,14 +239,12 @@ export default function Footer() {
               ))}
             </nav>
 
-            {/* Nav col 2 */}
             <nav className="nav-col">
               {navCol2.map((item) => (
                 <span key={item} className="nav-link">{item}</span>
               ))}
             </nav>
 
-            {/* Nav col 3 — locations */}
             <nav className="nav-col">
               {navCol3.map((item) => (
                 <span key={item} className="nav-link">{item}</span>
