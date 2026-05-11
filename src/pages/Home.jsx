@@ -12,8 +12,6 @@ const Home = () => {
     return (
         <div className="space-y-10">
           
-
-            {/* Other Components Will Go Here */}
            <Banner/>
            <AboutSection/>
           <FeaturedWork/>
