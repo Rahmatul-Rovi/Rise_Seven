@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from "react";
 
 const FULL_TEXT = "Ready to Rise at Seven?";
 
-// Split into words, each word into letters
 const words = FULL_TEXT.split(" ").map((word) =>
   word.split("").map((char) => char)
 );
 
-// Flatten all letters with index for staggered timing
 const allLetters = [];
 words.forEach((word, wi) => {
   word.forEach((char, li) => {
@@ -35,19 +33,14 @@ export default function ScrollTextReveal() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Overall horizontal slide: right → left
   const translateX = 55 - progress * 110;
 
-  // Each letter settles based on its position index — earlier letters settle first
-  // letterProgress: 0 = not started, 1 = fully settled
   const getLetterStyle = (globalIndex) => {
-    // stagger: first letter starts settling at progress=0.1, last at progress=0.5
     const start = 0.08 + (globalIndex / totalLetters) * 0.35;
     const end = start + 0.2;
     const lp = Math.max(0, Math.min(1, (progress - start) / (end - start)));
-    const factor = 1 - lp; // 1=unsettled, 0=settled
+    const factor = 1 - lp; 
 
-    // Rotation: alternate slightly so it looks organic
     const baseRotate = globalIndex % 2 === 0 ? -38 : -28;
     const baseY = globalIndex % 2 === 0 ? -70 : -50;
 
